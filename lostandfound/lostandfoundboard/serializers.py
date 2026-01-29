@@ -38,6 +38,17 @@ class CustomAuthToken(ObtainAuthToken):
         return Response({"token": token.key, "user_id": user.pk, "email": user.email})
 
 class ItemSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source="owner.id")
+
     class Meta:
         model = Item
-        fields = "__all__"  # You can list fields explicitly if you want
+        fields = [
+            "id",
+            "title",
+            "description",
+            "status",
+            "location",
+            "contact_email",
+            "date_created",
+            "owner",
+        ]
