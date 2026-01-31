@@ -19,6 +19,8 @@ class Item(models.Model):
 
     contact_email = models.EmailField()
 
+    image = models.ImageField(upload_to="item_images/", blank=True, null=True)
+
     date_created = models.DateTimeField(auto_now_add=True)
 
     owner = models.ForeignKey(

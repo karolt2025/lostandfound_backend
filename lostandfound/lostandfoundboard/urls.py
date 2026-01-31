@@ -13,11 +13,23 @@
 # ]
 
 
-from django.urls import path
-from .views import ItemListCreateView, ItemDetailView, home
+# from django.urls import path
+# from .views import ItemListCreateView, ItemDetailView, home
+
+# urlpatterns = [
+#     path('', home, name='home'),
+#     path('items/', ItemListCreateView.as_view(), name='items-list'),
+#     path('items/<int:pk>/', ItemDetailView.as_view(), name='item-detail'),
+# ]
+
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ItemViewSet, home
+
+router = DefaultRouter()
+router.register(r"items", ItemViewSet, basename="item")
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('items/', ItemListCreateView.as_view(), name='items-list'),
-    path('items/<int:pk>/', ItemDetailView.as_view(), name='item-detail'),
+    path("", home, name="home"),
+    path("", include(router.urls)),
 ]

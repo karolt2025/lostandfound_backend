@@ -49,6 +49,7 @@ class ItemSerializer(serializers.ModelSerializer):
             "status",
             "location",
             "contact_email",
+            "image",
             "date_created",
             "owner",
         ]
