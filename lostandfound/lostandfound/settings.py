@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     # Your apps
     'lostandfoundboard.apps.LostandfoundboardConfig',  # We can rename this to 'items' later if you want
     'users.apps.UsersConfig',
+    'accounts.apps.AccountsConfig',
 
     # Django REST Framework
     'rest_framework',
