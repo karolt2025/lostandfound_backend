@@ -8,6 +8,9 @@ from .permissions import IsOwnerOrReadOnly
 from .models import Message
 from .serializers import MessageSerializer
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
 from django.db.models import Q
 
 
@@ -61,6 +64,20 @@ class MessageViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(sender=self.request.user)
+
+    @action(detail=False, methods=["post"])
+    def mark_read(self, request):
+        item_id = request.data.get("item")
+        other_user_id = request.data.get("user")
+
+        Message.objects.filter(
+            item_id=item_id,
+            sender_id=other_user_id,
+            receiver=request.user,
+            is_read=False,
+        ).update(is_read=True)
+
+        return Response({"status": "ok"}, status=status.HTTP_200_OK)
 
 
 # class MessageViewSet(ModelViewSet):
