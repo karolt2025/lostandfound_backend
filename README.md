@@ -71,8 +71,3 @@ lostandfoundboard/
 | GET    | `/messages/?item={itemId}&user={userId}` | Get conversation for a specific item & user | ✅ Yes         |
 | POST   | `/messages/`                             | Send a new message                          | ✅ Yes         |
 | POST   | `/messages/mark_read/`                   | Mark messages as read for a conversation    | ✅ Yes         |
-
-**🏠 Utility**
-| Method | Endpoint | Description                                      | Auth Required |
-| ------ | -------- | ------------------------------------------------ | ------------- |
-| GET    | `/`      | Health check – confirms Django server is running | ❌ No          |
